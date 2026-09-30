@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/industry-fc66b6c8-327b-4ba3-b79f-824447db20a3/styles.css">
+<script src="_ds/industry-fc66b6c8-327b-4ba3-b79f-824447db20a3/_ds_bundle.js"></script>
+<style>body{margin:0;background:#e4e4e6;font-family:var(--font-body);color:var(--color-text)}a{color:inherit}a:hover{color:inherit;opacity:.8}</style>
+</helmet>
+<div style="{{ themeVars }};padding:40px 44px 60px;display:flex;flex-direction:column;gap:28px;align-items:flex-start">
+
+<div style="width:1280px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap"><h1 style="margin:0;font-size:44px;line-height:1">Yard app · full flow from the Figma file</h1><span style="font-size:14px;color:var(--color-neutral-700)">Tap a step to jump. Small grey text = the Figma frame it comes from.</span></div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1.5px solid var(--color-text)">
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+<button onClick="{{ s.go }}" style="all:unset;cursor:pointer;padding:14px 16px 16px;border-left:{{ s.edge }};background:{{ s.bg }};color:{{ s.fg }};display:flex;flex-direction:column;gap:5px">
+<span style="display:flex;align-items:center;justify-content:space-between"><span style="font:600 28px/1 var(--font-heading)">{{ s.n }}</span><span style="font-size:18px">{{ s.arrow }}</span></span>
+<span style="font-size:16px;font-weight:600">{{ s.title }}</span>
+<span style="font-size:12.5px;line-height:1.35;opacity:.85">{{ s.does }}</span>
+<span style="font:11px ui-monospace,Menlo,monospace;opacity:.65">Figma: {{ s.fig }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display:flex;gap:28px;align-items:flex-start">
+
+<div style="width:1280px;min-height:900px;background:var(--color-bg);border:1.5px solid var(--color-text);display:flex;flex-direction:column;position:relative">
+<div style="height:64px;display:flex;align-items:center;gap:6px;padding:0 24px;background:var(--color-text);color:var(--color-bg)">
+<div style="font:600 24px var(--font-heading);letter-spacing:.04em;margin-right:18px">YARD</div>
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="7"><span style="padding:8px 12px;font-size:14px;font-weight:{{ n.w }};opacity:{{ n.o }};box-shadow:{{ n.line }}">{{ n.label }}</span></sc-for>
+<div style="flex:1"></div>
+<div style="width:36px;height:36px;border-radius:50%;background:var(--color-accent);color:var(--color-accent-fg);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px">RK</div>
+</div>
+<sc-if value="{{ showCrumb }}" hint-placeholder-val="{{ false }}">
+<div style="height:46px;display:flex;align-items:center;gap:10px;padding:0 36px;font-size:14px;background:var(--color-neutral-200);border-bottom:1px solid var(--color-divider)"><button onClick="{{ toList }}" style="all:unset;cursor:pointer;color:var(--color-neutral-800);white-space:nowrap;flex:none">Machines</button><span>›</span><button onClick="{{ toMachine }}" style="all:unset;cursor:pointer;white-space:nowrap;flex:none;font-weight:{{ crumbW }}">{{ sel.name }} · No. {{ sel.id }}</button><sc-if value="{{ crumb3 }}" hint-placeholder-val="{{ false }}"><span>›</span><span style="font-weight:600">{{ crumb3 }}</span></sc-if></div>
+</sc-if>
+
+<sc-if value="{{ p1 }}" hint-placeholder-val="{{ true }}">
+<div style="padding:30px 36px 40px;display:flex;flex-direction:column;gap:22px">
+<div><h2 style="margin:0;font-size:48px;line-height:1">Machines</h2><div style="margin-top:6px;font-size:16px;color:var(--color-neutral-700)">469 machines in total. Tap a box to show only those.</div></div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1.5px solid var(--color-text)">
+<sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+<button onClick="{{ t.pick }}" style="all:unset;cursor:pointer;padding:14px 16px;border-left:{{ t.edge }};background:{{ t.bg }};color:{{ t.fg }};display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:{{ t.dot }};border:1.5px solid {{ t.dotBorder }}"></span>{{ t.label }}</span>
+<span style="font:600 38px/1 var(--font-heading)">{{ t.count }}</span>
+</button>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 240px auto auto;gap:12px;align-items:end">
+<label class="field"><label style="font-size:14px;color:var(--color-text)">Find a machine</label><input class="input" value="{{ query }}" onChange="{{ onQuery }}" placeholder="Serial number, machine number or customer" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+<label class="field"><label style="font-size:14px;color:var(--color-text)">Status</label><select class="input" value="{{ filter }}" onChange="{{ onFilter }}" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"><sc-for list="{{ statusOpts }}" as="o" hint-placeholder-count="7"><option value="{{ o.k }}">{{ o.label }}</option></sc-for></select></label>
+<button class="btn btn-primary blueprint" style="height:52px;padding:0 26px;font-size:16px;font-weight:600;color:var(--color-accent-fg)">Search<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+<button onClick="{{ clearList }}" class="btn btn-secondary" style="height:52px;padding:0 20px;font-size:16px">Clear</button>
+</div>
+<div style="border-top:1.5px solid var(--color-text)">
+<div style="display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1.3fr) 90px minmax(0,1.5fr) 60px 100px minmax(0,1.5fr) 150px 24px;gap:14px;padding:10px 12px;font:600 12px var(--font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--color-neutral-700);border-bottom:1px solid var(--color-divider)"><span>Make · Model</span><span>Type</span><span>Mach. no.</span><span>Serial no.</span><span>Year</span><span>OFM no.</span><span>Customer</span><span>Status</span><span></span></div>
+<sc-for list="{{ rows }}" as="m" hint-placeholder-count="7">
+<button onClick="{{ m.open }}" style="all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1.3fr) 90px minmax(0,1.5fr) 60px 100px minmax(0,1.5fr) 150px 24px;gap:14px;align-items:center;min-height:64px;padding:8px 12px;border-bottom:1px solid var(--color-divider);font-size:14.5px" style-hover="background:var(--color-accent-100)">
+<span style="font-size:16px;font-weight:600">{{ m.name }}</span>
+<span><span style="display:block">{{ m.cat }}</span><span style="display:block;font-size:13px;color:var(--color-neutral-700)">{{ m.sub }}</span></span>
+<span>{{ m.id }}</span>
+<span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;overflow:hidden;text-overflow:ellipsis">{{ m.serial }}</span>
+<span>{{ m.year }}</span><span>{{ m.ofm }}</span><span>{{ m.customer }}</span>
+<span><span style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:15px;background:{{ m.st.bg }};color:{{ m.st.fg }};font-size:13.5px;font-weight:600;white-space:nowrap"><span style="width:8px;height:8px;border-radius:50%;background:{{ m.st.dot }}"></span>{{ m.st.label }}</span></span>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+</sc-for>
+<sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}"><div style="padding:36px 12px;text-align:center;font-size:16px;color:var(--color-neutral-700)">No machines found. Press Clear to see all.</div></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ p2 }}" hint-placeholder-val="{{ false }}">
+<div style="padding:30px 36px 40px;display:flex;flex-direction:column;gap:24px">
+<div style="display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px">
+<button onClick="{{ newComplaint }}" class="btn btn-primary blueprint" style="height:auto;min-height:176px;flex-direction:column;gap:12px;font-size:22px;font-weight:600;color:var(--color-accent-fg)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5v14"></path></svg>New complaint<span style="font-size:14px;font-weight:400;opacity:.9">Machine has a problem</span><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+<div style="border:1.5px solid var(--color-text);display:flex;flex-direction:column">
+<div style="padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--color-divider)"><h2 style="margin:0;font-size:36px;line-height:1">{{ sel.name }}</h2><span style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:17px;background:{{ sel.st.bg }};color:{{ sel.st.fg }};font-size:14px;font-weight:600"><span style="width:9px;height:9px;border-radius:50%;background:{{ sel.st.dot }}"></span>{{ sel.st.label }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1">
+<div style="padding:14px 20px"><div style="font-size:13px;color:var(--color-neutral-700)">Model</div><div style="font-size:18px;font-weight:600;margin-top:3px">{{ sel.model }}</div><div style="font-size:13.5px;color:var(--color-neutral-700);margin-top:2px">{{ sel.sub }} · {{ sel.year }} · {{ sel.serial }}</div></div>
+<div style="padding:14px 20px;border-left:1px solid var(--color-divider)"><div style="font-size:13px;color:var(--color-neutral-700)">Where it is now</div><div style="font-size:18px;font-weight:600;margin-top:3px">{{ sel.customer }}</div><div style="font-size:13.5px;color:var(--color-neutral-700);margin-top:2px">{{ sel.site }}</div></div>
+<div style="padding:14px 20px;border-left:1px solid var(--color-divider)"><div style="font-size:13px;color:var(--color-neutral-700)">Person on site</div><div style="font-size:18px;font-weight:600;margin-top:3px">{{ sel.contact }}</div><div style="font-size:13.5px;color:var(--color-neutral-700);margin-top:2px">{{ sel.phone }}</div></div>
+</div>
+</div>
+</div>
+<h3 style="margin:6px 0 0;font-size:32px">Complaints</h3>
+<div style="display:grid;grid-template-columns:280px 220px auto auto;gap:12px;align-items:end;justify-content:start">
+<label class="field"><label style="font-size:14px;color:var(--color-text)">Person</label><select class="input" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"><option>Everyone</option><option>Rajini</option><option>Kamal</option><option>Suresh</option></select></label>
+<label class="field"><label style="font-size:14px;color:var(--color-text)">Date</label><input class="input" placeholder="DD/MM/YYYY" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+<button class="btn btn-primary blueprint" style="height:52px;padding:0 26px;font-size:16px;font-weight:600;color:var(--color-accent-fg)">Search<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+<button class="btn btn-secondary" style="height:52px;padding:0 20px;font-size:16px">Clear</button>
+</div>
+<div style="border-top:1.5px solid var(--color-text)">
+<div style="display:grid;grid-template-columns:120px 130px minmax(0,1fr) minmax(0,2fr) 120px 210px;gap:14px;padding:10px 12px;font:600 12px var(--font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--color-neutral-700);border-bottom:1px solid var(--color-divider)"><span>Complaint no.</span><span>Date</span><span>Person</span><span>Problem</span><span>Status</span><span></span></div>
+<sc-for list="{{ complaints }}" as="c" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:120px 130px minmax(0,1fr) minmax(0,2fr) 120px 210px;gap:14px;align-items:center;min-height:68px;padding:8px 12px;border-bottom:1px solid var(--color-divider);font-size:15px">
+<span style="font-weight:600">{{ c.no }}</span><span>{{ c.date }}</span><span>{{ c.people }}</span><span>{{ c.problem }}</span>
+<span><span style="display:inline-flex;height:30px;align-items:center;padding:0 12px;border-radius:15px;font-size:13.5px;font-weight:600;background:{{ c.bg }};color:{{ c.fg }}">{{ c.status }}</span></span>
+<span style="display:flex;gap:8px;justify-content:flex-end"><button onClick="{{ c.edit }}" class="btn btn-secondary" style="height:46px;padding:0 18px;font-size:15px">Edit</button><button onClick="{{ c.view }}" class="btn btn-secondary" style="height:46px;padding:0 18px;font-size:15px;font-weight:600">Open</button></span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ p3 }}" hint-placeholder-val="{{ false }}">
+<div style="padding:30px 36px 40px;display:flex;flex-direction:column;gap:24px;flex:1;max-width:900px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:14px;font-weight:600;color:var(--color-accent-700)">{{ formMode }} · Step 1 of 2</div><h2 style="margin:4px 0 0;font-size:46px;line-height:1">What's the problem?</h2></div><button onClick="{{ toMachine }}" class="btn btn-secondary" style="width:48px;height:48px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px"><span style="height:5px;background:var(--color-accent)"></span><span style="height:5px;background:var(--color-neutral-300)"></span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Date</label><input class="input" type="date" value="2026-09-29" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Time</label><input class="input" type="time" value="11:20" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+</div>
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Person in charge</label><select class="input" value="{{ lead }}" onChange="{{ onLead }}" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"><sc-for list="{{ techList }}" as="t" hint-placeholder-count="3"><option value="{{ t }}">{{ t }}</option></sc-for></select></label>
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">What's wrong?</label><textarea class="input" value="{{ problem }}" onChange="{{ onProblem }}" placeholder="Example: oil leaking near the arm" style="min-height:140px;font-size:17px;border:1.5px solid var(--color-neutral-400);background:#fff"></textarea></label>
+<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--color-accent-100)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-800)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 12-8 12s-8-7-8-12a8 8 0 0 1 16 0zM12 7a3 3 0 1 0 0 6a3 3 0 1 0 0-6z"></path></svg><span style="flex:1;font-size:15px;color:var(--color-accent-900)"><b>{{ sel.model }}</b> is at {{ sel.customer }}, {{ sel.site }}</span></div>
+<div style="flex:1"></div>
+<div style="display:flex;justify-content:space-between"><button onClick="{{ toMachine }}" class="btn btn-secondary" style="height:60px;padding:0 28px;font-size:17px">Cancel</button><button onClick="{{ toStep2 }}" class="btn btn-primary blueprint" style="height:60px;padding:0 44px;font-size:18px;font-weight:600;color:var(--color-accent-fg)">Next<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ p4 }}" hint-placeholder-val="{{ false }}">
+<div style="padding:30px 36px 40px;display:flex;flex-direction:column;gap:22px;flex:1;max-width:960px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:14px;font-weight:600;color:var(--color-accent-700)">{{ formMode }} · Step 2 of 2</div><h2 style="margin:4px 0 0;font-size:46px;line-height:1">Tools and spares</h2><div style="margin-top:6px;font-size:15px;color:var(--color-neutral-700)">Add what each person takes to the site.</div></div><div style="display:flex;gap:8px"><button class="btn btn-secondary" style="width:48px;height:48px;padding:0" title="Print"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"></path></svg></button><button onClick="{{ toMachine }}" class="btn btn-secondary" style="width:48px;height:48px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px"><span style="height:5px;background:var(--color-accent)"></span><span style="height:5px;background:var(--color-accent)"></span></div>
+<sc-for list="{{ people }}" as="pp" hint-placeholder-count="1">
+<div class="blueprint" style="padding:20px 22px;display:flex;flex-direction:column;gap:18px;border:1.5px solid var(--color-text)">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end">
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Person {{ pp.num }}</label><select class="input" value="{{ pp.name }}" onChange="{{ pp.setName }}" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"><sc-for list="{{ techList }}" as="t" hint-placeholder-count="3"><option value="{{ t }}">{{ t }}</option></sc-for></select></label>
+<sc-if value="{{ pp.canRemove }}" hint-placeholder-val="{{ false }}"><button onClick="{{ pp.remove }}" class="btn btn-ghost" style="height:52px;padding:0 14px;font-size:15px;color:var(--color-neutral-800)">Remove person</button></sc-if>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 190px auto;gap:12px;align-items:end;padding:16px;background:var(--color-neutral-100)">
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Tool or spare</label><select class="input" value="{{ pp.pick }}" onChange="{{ pp.setPick }}" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"><option value="">Choose from store</option><sc-for list="{{ catalog }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for></select></label>
+<div class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">How many</label><div style="height:52px;display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--color-neutral-400);background:#fff;padding:0 4px"><button onClick="{{ pp.qDec }}" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px">−</button><span style="font-size:18px;font-weight:600">{{ pp.q }}</span><button onClick="{{ pp.qInc }}" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px">+</button></div></div>
+<button onClick="{{ pp.add }}" class="btn btn-primary blueprint" style="height:52px;padding:0 26px;font-size:16px;font-weight:600;color:var(--color-accent-fg)">Add<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+</div>
+<div>
+<div style="display:grid;grid-template-columns:60px minmax(0,1fr) 120px 52px;gap:12px;padding:8px 0;font:600 12px var(--font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--color-neutral-700);border-bottom:1.5px solid var(--color-text)"><span>No.</span><span>Tool or spare</span><span>How many</span><span></span></div>
+<sc-for list="{{ pp.items }}" as="it" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:60px minmax(0,1fr) 120px 52px;gap:12px;align-items:center;min-height:54px;border-bottom:1px solid var(--color-divider);font-size:16px"><span style="color:var(--color-neutral-700)">{{ it.no }}</span><span>{{ it.name }}</span><span style="font-weight:600">{{ it.qty }}</span><button onClick="{{ it.remove }}" class="btn btn-ghost" style="width:46px;height:46px;padding:0;color:var(--color-neutral-800)" title="Remove"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></button></div>
+</sc-for>
+<sc-if value="{{ pp.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:16px 0;font-size:15px;color:var(--color-neutral-700);border-bottom:1px solid var(--color-divider)">Nothing added yet. Choose a tool or spare above and press Add.</div></sc-if>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:end">
+<div><div style="font-size:15px;font-weight:600;margin-bottom:6px">Taking the tool bag?</div><div style="display:flex;gap:8px"><button onClick="{{ pp.bagYes }}" style="all:unset;cursor:pointer;height:50px;padding:0 30px;display:flex;align-items:center;border-radius:25px;border:1.5px solid {{ pp.yB }};background:{{ pp.yBg }};font-size:16px;font-weight:600">Yes</button><button onClick="{{ pp.bagNo }}" style="all:unset;cursor:pointer;height:50px;padding:0 30px;display:flex;align-items:center;border-radius:25px;border:1.5px solid {{ pp.nB }};background:{{ pp.nBg }};font-size:16px;font-weight:600">No</button></div></div>
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Vehicle number</label><input class="input" value="{{ pp.van }}" onChange="{{ pp.setVan }}" placeholder="Example: TN 09 BK 4471" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+</div>
+</div>
+</sc-for>
+<button onClick="{{ addPerson }}" class="btn btn-secondary" style="height:58px;font-size:17px;font-weight:600;width:100%;border:1.5px dashed var(--color-neutral-500)">+ Add another person</button>
+<div style="flex:1"></div>
+<div style="display:flex;justify-content:space-between"><button onClick="{{ toStep1 }}" class="btn btn-secondary" style="height:60px;padding:0 28px;font-size:17px">Back</button><button onClick="{{ submitComplaint }}" class="btn btn-primary blueprint" style="height:60px;padding:0 44px;font-size:18px;font-weight:600;color:var(--color-accent-fg)">Save complaint<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ p5 }}" hint-placeholder-val="{{ false }}">
+<div style="padding:30px 36px 40px;display:flex;flex-direction:column;gap:22px;flex:1">
+<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="display:flex;gap:10px;align-items:center"><span style="font-size:14px;font-weight:600;color:var(--color-accent-700)">Complaint {{ cur.no }}</span><span style="display:inline-flex;height:28px;align-items:center;padding:0 12px;border-radius:14px;font-size:13px;font-weight:600;background:{{ cur.bg }};color:{{ cur.fg }}">{{ cur.status }}</span></div><h2 style="margin:4px 0 0;font-size:46px;line-height:1">{{ cur.problem }}</h2><div style="margin-top:6px;font-size:15px;color:var(--color-neutral-700)">{{ cur.date }} · {{ sel.model }} · at {{ sel.customer }}, {{ sel.site }}</div></div>
+<div style="display:flex;gap:8px"><button class="btn btn-secondary" style="height:48px;padding:0 16px;font-size:15px;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"></path></svg>Print</button><button onClick="{{ cur.edit }}" class="btn btn-secondary" style="height:48px;padding:0 18px;font-size:15px">Edit</button></div></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<sc-for list="{{ people }}" as="pp" hint-placeholder-count="1">
+<div class="blueprint" style="padding:18px 20px;border:1.5px solid var(--color-text)">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="width:44px;height:44px;border-radius:50%;background:var(--color-accent-100);color:var(--color-accent-900);display:flex;align-items:center;justify-content:center;font-weight:600">{{ pp.ini }}</span><div><div style="font-size:18px;font-weight:600">{{ pp.name }}</div><div style="font-size:14px;color:var(--color-neutral-700)">Vehicle {{ pp.van }} · Tool bag: {{ pp.bagLabel }}</div></div></div>
+<sc-for list="{{ pp.items }}" as="it" hint-placeholder-count="2"><div style="display:flex;justify-content:space-between;min-height:46px;align-items:center;border-top:1px solid var(--color-divider);font-size:16px"><span>{{ it.name }}</span><b>{{ it.qty }}</b></div></sc-for>
+</div>
+</sc-for>
+</div>
+<div style="flex:1"></div>
+<div style="display:flex;justify-content:space-between"><button onClick="{{ toMachine }}" class="btn btn-secondary" style="height:60px;padding:0 28px;font-size:17px">Back</button><sc-if value="{{ cur.open }}" hint-placeholder-val="{{ true }}"><button onClick="{{ toFinish }}" class="btn btn-primary blueprint" style="height:60px;padding:0 44px;font-size:18px;font-weight:600;color:var(--color-accent-fg)">Finish job<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></sc-if></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ p6 }}" hint-placeholder-val="{{ false }}">
+<div style="padding:30px 36px 40px;display:flex;flex-direction:column;gap:22px;flex:1;max-width:900px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:14px;font-weight:600;color:var(--color-accent-700)">Complaint {{ cur.no }} · {{ sel.name }}</div><h2 style="margin:4px 0 0;font-size:46px;line-height:1">Finish job</h2></div><button onClick="{{ toView }}" class="btn btn-secondary" style="width:48px;height:48px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Finished on</label><input class="input" type="date" value="2026-09-29" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">Finished at</label><input class="input" type="time" value="16:30" style="height:52px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></input></label>
+</div>
+<div><div style="font-size:15px;font-weight:600;margin-bottom:6px">Were these used?</div>
+<div style="border-top:1.5px solid var(--color-text)">
+<sc-for list="{{ usedRows }}" as="it" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:16px;min-height:64px;border-bottom:1px solid var(--color-divider)"><span style="flex:1;font-size:16px">{{ it.name }} <span style="color:var(--color-neutral-700)">× {{ it.qty }} · {{ it.who }}</span></span>
+<div style="display:flex;gap:8px"><button onClick="{{ it.setUsed }}" style="all:unset;cursor:pointer;height:46px;padding:0 22px;display:flex;align-items:center;border-radius:23px;border:1.5px solid {{ it.uB }};background:{{ it.uBg }};font-size:15px;font-weight:600">Used</button><button onClick="{{ it.setBack }}" style="all:unset;cursor:pointer;height:46px;padding:0 22px;display:flex;align-items:center;border-radius:23px;border:1.5px solid {{ it.bB }};background:{{ it.bBg }};font-size:15px;font-weight:600">Not used</button></div></div>
+</sc-for>
+</div></div>
+<label class="field"><label style="font-size:15px;color:var(--color-text);font-weight:600">What was done?</label><textarea class="input" placeholder="Example: changed the arm hose, tested for 20 minutes" style="min-height:110px;font-size:17px;border:1.5px solid var(--color-neutral-400);background:#fff"></textarea></label>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn btn-secondary" style="height:52px;padding:0 18px;font-size:16px;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M12 18v-6M9 15h6"></path></svg>Attach photo or file</button>
+<button class="btn btn-secondary" style="height:52px;padding:0 18px;font-size:16px;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>Send link to customer</button>
+</div>
+<div style="flex:1"></div>
+<div style="display:flex;justify-content:space-between"><button onClick="{{ toView }}" class="btn btn-secondary" style="height:60px;padding:0 28px;font-size:17px">Back</button><button onClick="{{ finishJob }}" class="btn btn-primary blueprint" style="height:60px;padding:0 44px;font-size:18px;font-weight:600;color:var(--color-accent-fg)">Submit<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:50%;bottom:28px;transform:translateX(-50%);background:var(--color-text);color:var(--color-bg);padding:16px 24px;font-size:16px;font-weight:600;box-shadow:var(--shadow-lg);display:flex;gap:10px;align-items:center;white-space:nowrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>{{ toastText }}</div>
+</sc-if>
+</div>
+
+<div style="width:360px;display:flex;flex-direction:column;border:1.5px solid var(--color-text);background:var(--color-bg)">
+<div style="padding:16px 18px;background:var(--color-text);color:var(--color-bg);font:600 22px var(--font-heading)">Old word → new word</div>
+<sc-for list="{{ words }}" as="w" hint-placeholder-count="20">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:9px 18px;border-top:1px solid var(--color-divider);font-size:14px"><span style="color:var(--color-neutral-700)">{{ w.old }}</span><span style="font-weight:600">{{ w.now }}</span></div>
+</sc-for>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Steel&quot;,&quot;Swiss red&quot;,&quot;Safety orange&quot;],&quot;default&quot;:&quot;Steel&quot;,&quot;tsType&quot;:&quot;'Steel'|'Swiss red'|'Safety orange'&quot;,&quot;section&quot;:&quot;Color scheme&quot;}}">
+const PAL = {
+  "Steel": { a: "#5980a6", fg: "#f2f2f3", c100: "#eef6ff", c200: "#d6ebff", c700: "#416180", c800: "#2c455d", c900: "#1d2d3d" },
+  "Swiss red": { a: "#d42a1f", fg: "#ffffff", c100: "#fdeceb", c200: "#f9cfcb", c700: "#a31d14", c800: "#7a150e", c900: "#3f0a06" },
+  "Safety orange": { a: "#d9560f", fg: "#ffffff", c100: "#fdf0e7", c200: "#fad7bf", c700: "#9e3c08", c800: "#772d06", c900: "#3b1603" }
+};
+const ST = {
+  ready: ["Ready to rent", "ink", 15], rented: ["Rented", "soft", 388], broken: ["Broken on site", "alert", 1],
+  coming: ["Coming back", "soft", 5], repair: ["Needs repair", "grey", 16], parked: ["Parked", "grey", 45]
+};
+const M = [
+  { id: "56695", name: "JCB 3DX Super", model: "JCB 3DX Super", cat: "Earthmoving", sub: "Backhoe", year: 2021, serial: "LGZLS101CSZ162038", ofm: "900034281", st: "broken", customer: "Sree Balaji Constructions", site: "Porur, Chennai", contact: "Senthil", phone: "94440 18230" },
+  { id: "56702", name: "CAT 320D2", model: "CAT 320D2", cat: "Earthmoving", sub: "Digger", year: 2019, serial: "CAT0320DKZBF01452", ofm: "900034297", st: "rented", customer: "Larsen Infra Works", site: "Gate 3, Sriperumbudur", contact: "Murugan", phone: "98401 22871" },
+  { id: "57110", name: "Genie GS-1932", model: "Genie GS-1932", cat: "Access", sub: "Scissor lift", year: 2022, serial: "GS3016A-128834", ofm: "900034310", st: "coming", customer: "On the road", site: "Due today, 6 PM", contact: "Driver Babu", phone: "90030 55412" },
+  { id: "57221", name: "Manitou MT 1840", model: "Manitou MT 1840", cat: "Lifting", sub: "Telehandler", year: 2020, serial: "MAN1840EZ77321", ofm: "—", st: "repair", customer: "Yard", site: "Workshop, Bay 4", contact: "Kamal", phone: "98840 11209" },
+  { id: "57412", name: "Kirloskar 125 kVA", model: "Kirloskar KG1-125", cat: "Power", sub: "Generator", year: 2023, serial: "KOEL125-2203931", ofm: "—", st: "ready", customer: "Yard", site: "Bay 2", contact: "Yard desk", phone: "044 2745 1100" },
+  { id: "57305", name: "Haulotte HA16", model: "Haulotte HA16 RTJ", cat: "Access", sub: "Boom lift", year: 2018, serial: "HA16RTJ-4410982", ofm: "—", st: "parked", customer: "Yard", site: "Bay 7", contact: "Yard desk", phone: "044 2745 1100" }
+];
+const TECHS = ["Rajini", "Kamal", "Suresh", "John"];
+const CATALOG = ["Hydraulic hose", "O-ring kit", "Hydraulic oil (litre)", "Grease", "Spanner set", "Multimeter", "Filter", "Fan belt"];
+const STEPS = [
+  ["Machines", "Find the machine", "Frame 1 · Machine status"],
+  ["Machine", "See the machine and its complaints", "Frame 2 · Complaints"],
+  ["New complaint", "Date, time, person, problem", "new complinet · step 1"],
+  ["Tools and spares", "Add tools, tool bag, vehicle, more people", "new complinet · Spare register"],
+  ["Complaint", "See who went and what they took", "view details"],
+  ["Finish job", "Used or not, what was done, send link", "after check out"]
+];
+const WORDS = [["Machine status", "Machines"], ["Reedy To Rent", "Ready to rent"], ["On Hire", "Rented"], ["On Hire Break Down", "Broken on site"], ["Inward Pending", "Coming back"], ["Yard (TBS)", "Needs repair"], ["Yard", "Parked"], ["Search Serial Number", "Find a machine"], ["Reset", "Clear"], ["view detail", "tap the row / Open"], ["AssetCode", "Mach. no."], ["Category / Sub Category", "Type"], ["Complaints", "Complaints"], ["New complaint", "New complaint"], ["Assigned person", "Person in charge"], ["Complain remark", "What's wrong?"], ["next", "Next"], ["Spare register", "Tools and spares"], ["Spare", "Tool or spare"], ["quantity / Nos", "How many"], ["Add new person", "+ Add another person"], ["vehicle number", "Vehicle number"], ["check out", "Finish job"], ["check out date / time", "Finished on / at"], ["used / not used", "Used / Not used"], ["Complain report", "What was done?"], ["Send link", "Send link to customer"], ["Pending / Completed", "Open / Done"]];
+
+const mkPerson = (name, van, items) => ({ name, van, bag: true, pick: "", q: 1, items });
+
+class Component extends DCLogic {
+  state = {
+    page: 1, filter: "all", query: "", selId: "56695", curNo: "C-1042", mode: "new", toast: "", lead: "Rajini", problem: "",
+    complaints: [
+      { no: "C-1042", date: "29 Sep 2026", problem: "Oil leaking near the arm", status: "open",
+        people: [mkPerson("Rajini", "TN 09 BK 4471", [{ name: "Hydraulic hose", qty: 2 }, { name: "O-ring kit", qty: 1 }]), mkPerson("Kamal", "TN 09 BK 4471", [{ name: "Hydraulic oil (litre)", qty: 5 }])] },
+      { no: "C-1017", date: "02 Sep 2026", problem: "250-hour service", status: "done", people: [mkPerson("Kamal", "TN 09 CX 1180", [{ name: "Filter", qty: 2 }, { name: "Grease", qty: 1 }])] }
+    ],
+    draft: [], used: {}
+  };
+
+  tone(t) {
+    return ({ ink: ["var(--color-text)", "var(--color-bg)", "var(--color-bg)"], soft: ["var(--color-neutral-200)", "var(--color-text)", "var(--color-text)"],
+      alert: ["var(--color-accent)", "var(--color-accent-fg)", "var(--color-accent-fg)"], grey: ["transparent", "var(--color-neutral-800)", "var(--color-neutral-500)"] })[t];
+  }
+  st(k) { const [label, tone] = ST[k]; const [bg, fg, dot] = this.tone(tone); return { label, bg, fg, dot }; }
+  go(page, extra) { this.setState({ page, toast: "", ...(extra || {}) }); }
+  cur() { return this.state.complaints.find(c => c.no === this.state.curNo) || this.state.complaints[0]; }
+  updDraft(i, fn) { this.setState(s => ({ draft: s.draft.map((p, j) => j === i ? { ...p, ...fn(p) } : p) })); }
+  clone(people) { return people.map(p => ({ ...p, items: p.items.map(it => ({ ...it })) })); }
+
+  renderVals() {
+    const S = this.state;
+    const P = PAL[this.props.palette ?? "Steel"] || PAL.Steel;
+    const themeVars = `--color-accent:${P.a};--color-accent-fg:${P.fg};--color-accent-100:${P.c100};--color-accent-200:${P.c200};--color-accent-600:${P.c700};--color-accent-700:${P.c700};--color-accent-800:${P.c800};--color-accent-900:${P.c900}`;
+    const steps = STEPS.map(([title, does, fig], i) => {
+      const on = S.page === i + 1;
+      return { n: String(i + 1).padStart(2, "0"), title, does, fig, arrow: i < 5 ? "→" : "✓", edge: i ? "1.5px solid var(--color-text)" : "none",
+        bg: on ? "var(--color-accent)" : "var(--color-bg)", fg: on ? "var(--color-accent-fg)" : "var(--color-text)",
+        go: () => i === 2 ? this.startNew() : i === 3 ? this.go(4, S.draft.length ? {} : { draft: this.clone(this.cur().people) }) : this.go(i + 1) };
+    });
+    const nav = ["Machines", "Service", "Store", "Approvals", "Reports", "MIS", "Masters", "Settings"].map((label, i) => ({ label, w: i === 0 ? 600 : 400, o: i === 0 ? 1 : 0.75, line: i === 0 ? "inset 0 -2px 0 var(--color-accent)" : "none" }));
+    const tiles = Object.keys(ST).map((k, i) => {
+      const on = S.filter === k; const s = this.st(k);
+      return { label: s.label, count: ST[k][2], edge: i ? "1.5px solid var(--color-text)" : "none", bg: on ? "var(--color-text)" : "transparent", fg: on ? "var(--color-bg)" : "var(--color-text)",
+        dot: s.bg === "transparent" ? "transparent" : s.bg, dotBorder: s.bg === "transparent" ? "var(--color-neutral-500)" : (on && k === "ready" ? "var(--color-bg)" : s.bg), pick: () => this.setState({ filter: on ? "all" : k }) };
+    });
+    const q = S.query.trim().toLowerCase();
+    const rows = M.filter(m => (S.filter === "all" || m.st === S.filter) && (!q || (m.name + m.id + m.serial + m.customer).toLowerCase().includes(q)))
+      .map(m => ({ ...m, st: this.st(m.st), open: () => this.go(2, { selId: m.id }) }));
+    const sm = M.find(m => m.id === S.selId);
+    const sel = { ...sm, st: this.st(sm.st) };
+    const cTone = st => st === "open" ? { status: "Open", bg: "var(--color-accent)", fg: "var(--color-accent-fg)", open: true } : { status: "Done", bg: "var(--color-neutral-200)", fg: "var(--color-text)", open: false };
+    const complaints = S.complaints.map(c => ({ ...c, ...cTone(c.status), people: c.people.map(p => p.name).join(", "),
+      edit: () => this.go(3, { curNo: c.no, mode: "edit", lead: c.people[0]?.name || "Rajini", problem: c.problem, draft: this.clone(c.people) }),
+      view: () => this.go(5, { curNo: c.no }) }));
+    const cc = this.cur();
+    const cur = { ...cc, ...cTone(cc.status), edit: () => this.go(3, { mode: "edit", lead: cc.people[0]?.name, problem: cc.problem, draft: this.clone(cc.people) }) };
+    const pickSt = on => [on ? "var(--color-text)" : "var(--color-neutral-400)", on ? "var(--color-accent-100)" : "#fff"];
+    const src = S.page === 5 ? cc.people : S.draft;
+    const people = src.map((p, i) => {
+      const [yB, yBg] = pickSt(p.bag), [nB, nBg] = pickSt(!p.bag);
+      return { ...p, num: i + 1, ini: p.name.slice(0, 2).toUpperCase(), bagLabel: p.bag ? "Yes" : "No", canRemove: src.length > 1, empty: p.items.length === 0, yB, yBg, nB, nBg,
+        items: p.items.map((it, j) => ({ ...it, no: j + 1, remove: () => this.updDraft(i, pp => ({ items: pp.items.filter((_, k) => k !== j) })) })),
+        setName: e => this.updDraft(i, () => ({ name: e.target.value })), setVan: e => this.updDraft(i, () => ({ van: e.target.value })),
+        setPick: e => this.updDraft(i, () => ({ pick: e.target.value })),
+        qInc: () => this.updDraft(i, pp => ({ q: pp.q + 1 })), qDec: () => this.updDraft(i, pp => ({ q: Math.max(1, pp.q - 1) })),
+        add: () => this.updDraft(i, pp => pp.pick ? { items: [...pp.items, { name: pp.pick, qty: pp.q }], pick: "", q: 1 } : {}),
+        bagYes: () => this.updDraft(i, () => ({ bag: true })), bagNo: () => this.updDraft(i, () => ({ bag: false })),
+        remove: () => this.setState(s => ({ draft: s.draft.filter((_, k) => k !== i) })) };
+    });
+    const usedRows = [];
+    cc.people.forEach(p => p.items.forEach(it => {
+      const key = cc.no + p.name + it.name; const u = S.used[key] ?? true;
+      const [uB, uBg] = pickSt(u), [bB, bBg] = pickSt(!u);
+      usedRows.push({ ...it, who: p.name, uB, uBg, bB, bBg, setUsed: () => this.setState(s => ({ used: { ...s.used, [key]: true } })), setBack: () => this.setState(s => ({ used: { ...s.used, [key]: false } })) });
+    }));
+    const crumb3 = ["", "", S.mode === "edit" ? "Edit complaint" : "New complaint", S.mode === "edit" ? "Edit complaint" : "New complaint", "Complaint " + cc.no, "Finish job"][S.page - 1];
+    return {
+      themeVars, steps, nav, tiles, rows, noRows: rows.length === 0, sel, complaints, cur, people, usedRows,
+      statusOpts: [{ k: "all", label: "All" }, ...Object.keys(ST).map(k => ({ k, label: ST[k][0] }))],
+      techList: TECHS, catalog: CATALOG, words: WORDS.map(([old, now]) => ({ old, now })),
+      p1: S.page === 1, p2: S.page === 2, p3: S.page === 3, p4: S.page === 4, p5: S.page === 5, p6: S.page === 6,
+      showCrumb: S.page > 1, crumb3, crumbW: S.page === 2 ? 600 : 400,
+      formMode: S.mode === "edit" ? "Edit complaint " + cc.no : "New complaint",
+      query: S.query, onQuery: e => this.setState({ query: e.target.value }), filter: S.filter, onFilter: e => this.setState({ filter: e.target.value }),
+      clearList: () => this.setState({ query: "", filter: "all" }),
+      lead: S.lead, onLead: e => this.setState({ lead: e.target.value }), problem: S.problem, onProblem: e => this.setState({ problem: e.target.value }),
+      toList: () => this.go(1), toMachine: () => this.go(2), toView: () => this.go(5), toFinish: () => this.go(6),
+      newComplaint: () => this.startNew(), toStep1: () => this.go(3),
+      toStep2: () => this.setState(s => ({ page: 4, draft: s.draft.length ? s.draft.map((p, i) => i === 0 ? { ...p, name: s.lead } : p) : [mkPerson(s.lead, "", [])] })),
+      addPerson: () => this.setState(s => ({ draft: [...s.draft, mkPerson(TECHS.find(t => !s.draft.some(p => p.name === t)) || TECHS[0], s.draft[0]?.van || "", [])] })),
+      submitComplaint: () => this.saveComplaint(),
+      finishJob: () => this.setState(s => ({ page: 2, toast: `Complaint ${s.curNo} is done`, complaints: s.complaints.map(c => c.no === s.curNo ? { ...c, status: "done" } : c) })),
+      toast: !!S.toast, toastText: S.toast
+    };
+  }
+  startNew() { this.go(3, { mode: "new", lead: "Rajini", problem: "", draft: [] }); }
+  saveComplaint() {
+    this.setState(s => {
+      const people = s.draft.length ? s.draft : [mkPerson(s.lead, "", [])];
+      if (s.mode === "edit") return { page: 5, toast: `Complaint ${s.curNo} saved`, complaints: s.complaints.map(c => c.no === s.curNo ? { ...c, problem: s.problem || c.problem, people } : c) };
+      const no = "C-" + (1043 + s.complaints.length - 2);
+      return { page: 5, curNo: no, toast: `Complaint ${no} saved`, complaints: [{ no, date: "29 Sep 2026", problem: s.problem || "Problem not written", status: "open", people }, ...s.complaints] };
+    });
+  }
+}
+</script>
+</body>
+</html>

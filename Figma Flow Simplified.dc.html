@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/industry-fc66b6c8-327b-4ba3-b79f-824447db20a3/styles.css">
+<script src="_ds/industry-fc66b6c8-327b-4ba3-b79f-824447db20a3/_ds_bundle.js"></script>
+<style>body{margin:0;background:#dcdcdf;font-family:var(--font-body);color:var(--color-text)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-900)}</style>
+</helmet>
+<div style="padding:40px 44px 60px;display:flex;flex-direction:column;gap:30px">
+
+<div style="max-width:1400px"><h1 style="margin:0;font-size:40px;line-height:1">Same flow, simpler screens</h1><p style="margin:8px 0 0;font-size:15px;color:var(--color-neutral-700);max-width:980px;text-wrap:pretty">These are the same 6 screens and fields as the Figma file, left to right. Each screen puts a clear title and a "you are here" line at the top and keeps one main button on the bottom right. Complaint steps show "Step 1 of 2" / "Step 2 of 2", and every complaint shows its status.</p></div>
+
+<div style="display:flex;gap:0;align-items:flex-start">
+<sc-for list="{{ screens }}" as="s" hint-placeholder-count="6">
+<div style="display:flex;align-items:flex-start;flex:none">
+<div style="display:flex;flex-direction:column;gap:12px;width:1200px;flex:none">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:40px;flex:none;background:var(--color-accent-900);color:var(--color-bg);display:flex;align-items:center;justify-content:center;font:600 20px var(--font-heading)">{{ s.n }}</span><div><div style="font-size:18px;font-weight:600">{{ s.title }}</div><div style="font-size:13px;color:var(--color-neutral-700);white-space:nowrap">{{ s.does }} · Figma: {{ s.fig }}</div></div></div>
+</div>
+<sc-if value="{{ s.arrow }}" hint-placeholder-val="{{ true }}"><div style="flex:none;width:80px"></div></sc-if>
+</div>
+</sc-for>
+</div>
+
+<div style="display:flex;gap:0;align-items:flex-start;margin-top:-18px">
+
+<div data-screen-label="01 Machines" style="flex:none;width:1200px;min-height:900px;background:var(--color-bg);border:1.5px solid var(--color-text);display:flex;flex-direction:column">
+<div style="height:60px;display:flex;align-items:center;gap:4px;padding:0 24px;background:var(--color-accent-900);color:var(--color-bg)"><span style="font:600 22px var(--font-heading);letter-spacing:.05em;margin-right:18px">YARD</span><span style="padding:8px 12px;font-size:14px;font-weight:600;box-shadow:inset 0 -2px 0 var(--color-accent-300)">Machines</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Service</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Store</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Approvals</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Reports</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Masters</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Settings</span><span style="flex:1"></span><span style="width:34px;height:34px;border-radius:50%;background:var(--color-accent-300);color:var(--color-accent-900);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">US</span></div>
+<div style="padding:28px 32px 32px;display:flex;flex-direction:column;gap:20px">
+<div><div style="font-size:13px;color:var(--color-neutral-700)">You are here: all machines</div><h2 style="margin:2px 0 0;font-size:44px;line-height:1">Machines <span style="font-weight:400;color:var(--color-neutral-600)">240</span></h2></div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1.5px solid var(--color-text)">
+<sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6"><div style="padding:12px 14px;border-left:{{ t.edge }};background:{{ t.bg }};color:{{ t.fg }};display:flex;flex-direction:column;gap:6px"><span style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:{{ t.dot }}"></span>{{ t.label }}</span><span style="font:600 34px/1 var(--font-heading)">{{ t.count }}</span></div></sc-for>
+</div>
+<div style="display:flex;gap:12px"><div style="flex:1;height:52px;display:flex;align-items:center;gap:10px;padding:0 16px;border:1.5px solid var(--color-neutral-400);background:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-neutral-600)" stroke-width="1.5" stroke-linecap="round"><path d="M11 3a8 8 0 1 0 0 16a8 8 0 1 0 0-16zM21 21l-4.3-4.3"></path></svg><span style="font-size:16px;color:var(--color-neutral-600)">Search by serial number, e.g. XXX</span></div><div style="width:200px;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px">Status: All<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></div><button class="btn btn-secondary" style="height:52px;padding:0 20px;font-size:16px">Clear</button></div>
+<div style="border-top:1.5px solid var(--color-text)">
+<div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.2fr) 80px minmax(0,1.4fr) 54px 96px minmax(0,1.2fr) 160px 20px;gap:12px;padding:10px 10px;font:600 11.5px var(--font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--color-neutral-700);border-bottom:1px solid var(--color-divider)"><span>Make · Model</span><span>Category</span><span>Mach. no.</span><span>Serial no.</span><span>Year</span><span>OFM no.</span><span>Customer</span><span>Status · last update</span><span></span></div>
+<sc-for list="{{ machines }}" as="m" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.2fr) 80px minmax(0,1.4fr) 54px 96px minmax(0,1.2fr) 160px 20px;gap:12px;align-items:center;min-height:68px;padding:6px 10px;border-bottom:1px solid var(--color-divider);font-size:14px;background:{{ m.hl }}">
+<span style="font-size:15px;font-weight:600">{{ m.make }} {{ m.model }}</span><span><span style="display:block">{{ m.cat }}</span><span style="display:block;font-size:12.5px;color:var(--color-neutral-700)">{{ m.sub }}</span></span><span>{{ m.id }}</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;overflow:hidden;text-overflow:ellipsis">{{ m.serial }}</span><span>{{ m.year }}</span><span>{{ m.ofm }}</span><span>{{ m.customer }}</span>
+<span style="display:flex;flex-direction:column;align-items:flex-start;gap:4px"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:14px;background:{{ m.st.bg }};color:{{ m.st.fg }};font-size:13px;font-weight:600;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:{{ m.st.dot }}"></span>{{ m.st.label }}</span><span style="font-size:12.5px;color:var(--color-neutral-700);white-space:nowrap">{{ m.since }}</span></span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+</div>
+</sc-for>
+</div>
+<div style="font-size:13.5px;color:var(--color-neutral-700)">Tap any row to open that machine. Row 1 (highlighted) opens screen 02.</div>
+</div>
+</div>
+
+<div style="flex:none;width:80px;align-self:center;display:flex;justify-content:center"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" stroke="var(--color-accent-900)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h42M34 3l10 9-10 9"></path></svg></div>
+
+<div data-screen-label="02 Complaints" style="flex:none;width:1200px;min-height:900px;background:var(--color-bg);border:1.5px solid var(--color-text);display:flex;flex-direction:column">
+<div style="height:60px;display:flex;align-items:center;gap:4px;padding:0 24px;background:var(--color-accent-900);color:var(--color-bg)"><span style="font:600 22px var(--font-heading);letter-spacing:.05em;margin-right:18px">YARD</span><span style="padding:8px 12px;font-size:14px;font-weight:600;box-shadow:inset 0 -2px 0 var(--color-accent-300)">Machines</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Service</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Store</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Approvals</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Reports</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Masters</span><span style="padding:8px 12px;font-size:14px;opacity:.75">Settings</span><span style="flex:1"></span><span style="width:34px;height:34px;border-radius:50%;background:var(--color-accent-300);color:var(--color-accent-900);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">US</span></div>
+<div style="padding:28px 32px 32px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--color-accent-700)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>Machines</div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
+<div><div style="font-size:13px;color:var(--color-neutral-700)">You are here: complaints for one machine</div><h2 style="margin:2px 0 0;font-size:44px;line-height:1">Terrax TX-200</h2><div style="display:flex;align-items:center;gap:10px;margin-top:8px;font-size:15px;color:var(--color-neutral-700)"><span>Machine no. 1001</span><span>·</span><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:14px;background:var(--color-accent-800);color:var(--color-bg);font-size:13px;font-weight:600">Rented</span></div></div>
+<button class="btn btn-primary blueprint" style="height:60px;padding:0 30px;font-size:18px;font-weight:600;gap:10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5v14"></path></svg>New complaint<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+</div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;border-top:1.5px solid var(--color-text);padding-top:18px">
+<h3 style="margin:0;font-size:28px">Complaints <span style="font-weight:400;color:var(--color-neutral-600)">2</span></h3>
+<div style="display:flex;gap:10px"><div style="width:200px;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px">Person: All<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></div><div style="width:180px;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px;color:var(--color-neutral-600)">Date<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg></div><button class="btn btn-secondary" style="height:48px;padding:0 18px;font-size:15px">Clear</button></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:18px 20px;border:1.5px solid var(--color-text)">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:18px;font-weight:600">Complaint 2041</span><span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:14px;background:var(--color-accent);color:var(--color-bg);font-size:13px;font-weight:600">Open</span></div><div style="display:flex;gap:20px;font-size:15px;color:var(--color-neutral-800)"><span>29/09/2026</span><span>Person: Priya</span></div><div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--color-accent-700)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM12 6v6l4 2"></path></svg>Opened 3 hrs ago · last update 20 min ago</div></div>
+<div style="display:flex;gap:10px"><button class="btn btn-secondary" style="height:50px;padding:0 22px;font-size:16px">Edit</button><button class="btn btn-primary blueprint" style="height:50px;padding:0 26px;font-size:16px;font-weight:600">View<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:18px 20px;border:1px solid var(--color-divider)">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:18px;font-weight:600">Complaint 2037</span><span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:14px;background:var(--color-neutral-200);color:var(--color-text);font-size:13px;font-weight:600">Done</span></div><div style="display:flex;gap:20px;font-size:15px;color:var(--color-neutral-800)"><span>02/09/2026</span><span>Person: Arun</span></div><div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--color-neutral-700)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM12 6v6l4 2"></path></svg>Finished 4 weeks ago · took 6 hrs</div></div>
+<div style="display:flex;gap:10px"><button class="btn btn-secondary" style="height:50px;padding:0 22px;font-size:16px">Edit</button><button class="btn btn-secondary" style="height:50px;padding:0 26px;font-size:16px;font-weight:600">View</button></div>
+</div>
+</div>
+<div style="font-size:13.5px;color:var(--color-neutral-700)">"New complaint" opens screen 03. "View" opens screen 05.</div>
+</div>
+</div>
+
+<div style="flex:none;width:80px;align-self:center;display:flex;justify-content:center"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" stroke="var(--color-accent-900)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h42M34 3l10 9-10 9"></path></svg></div>
+
+<div data-screen-label="03 New complaint step 1" style="flex:none;width:1200px;min-height:900px;background:color-mix(in srgb,var(--color-accent-900) 45%,var(--color-bg));border:1.5px solid var(--color-text);display:flex;justify-content:flex-end">
+<div style="width:620px;background:var(--color-bg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column">
+<div style="padding:26px 30px 0;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:13px;color:var(--color-neutral-700)">Terrax TX-200 · Machine no. 1001</div><h2 style="margin:4px 0 0;font-size:38px;line-height:1">New complaint</h2></div><button class="btn btn-secondary" style="width:46px;height:46px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+<div style="padding:20px 30px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:5px;background:var(--color-accent)"></span><span style="font-size:14px;font-weight:700">Step 1 of 2 · The problem</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:5px;background:var(--color-neutral-300)"></span><span style="font-size:14px;color:var(--color-neutral-600)">Step 2 · Tools and spares</span></div>
+</div>
+<div style="padding:26px 30px;display:flex;flex-direction:column;gap:20px;flex:1">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<label class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">Date</label><div style="height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px">29/09/2026<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg></div></label>
+<label class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">Time</label><div style="height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px">11:20 AM<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM12 6v6l4 2"></path></svg></div></label>
+</div>
+<div class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">Person</label><div style="display:flex;gap:10px;flex-wrap:wrap"><span style="height:50px;padding:0 18px 0 6px;display:flex;align-items:center;gap:10px;border-radius:25px;border:2px solid var(--color-accent);background:var(--color-accent-100);font-size:16px;font-weight:600"><span style="width:38px;height:38px;border-radius:50%;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:13px">PR</span>Priya</span><span style="height:50px;padding:0 18px 0 6px;display:flex;align-items:center;gap:10px;border-radius:25px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px;font-weight:600"><span style="width:38px;height:38px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;font-size:13px">AR</span>Arun</span><span style="height:50px;padding:0 18px 0 6px;display:flex;align-items:center;gap:10px;border-radius:25px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px;font-weight:600"><span style="width:38px;height:38px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;font-size:13px">ME</span>Meena</span></div></div>
+<label class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">What's wrong?</label><textarea class="input" placeholder="Example: oil leaking near the arm" style="min-height:190px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff">Oil leaking near the arm. Machine stopped.</textarea></label>
+</div>
+<div style="padding:18px 30px 26px;border-top:1px solid var(--color-divider);display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;color:var(--color-neutral-700)">Next: add tools and spares</span><button class="btn btn-primary blueprint" style="height:58px;padding:0 40px;font-size:18px;font-weight:600">Next<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+
+<div style="flex:none;width:80px;align-self:center;display:flex;justify-content:center"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" stroke="var(--color-accent-900)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h42M34 3l10 9-10 9"></path></svg></div>
+
+<div data-screen-label="04 Tools and spares" style="flex:none;width:1200px;min-height:900px;background:color-mix(in srgb,var(--color-accent-900) 45%,var(--color-bg));border:1.5px solid var(--color-text);display:flex;justify-content:flex-end">
+<div style="width:620px;background:var(--color-bg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column">
+<div style="padding:26px 30px 0;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:13px;color:var(--color-neutral-700)">Terrax TX-200 · Machine no. 1001</div><h2 style="margin:4px 0 0;font-size:38px;line-height:1">New complaint</h2></div><div style="display:flex;gap:8px"><button class="btn btn-secondary" style="width:46px;height:46px;padding:0" title="Print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"></path></svg></button><button class="btn btn-secondary" style="width:46px;height:46px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div></div>
+<div style="padding:20px 30px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:5px;background:var(--color-accent)"></span><span style="font-size:14px;color:var(--color-neutral-700);display:flex;align-items:center;gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Step 1 · The problem</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:5px;background:var(--color-accent)"></span><span style="font-size:14px;font-weight:700">Step 2 of 2 · Tools and spares</span></div>
+</div>
+<div style="padding:22px 30px;display:flex;flex-direction:column;gap:16px;flex:1">
+<div style="border:1.5px solid var(--color-text);padding:16px 18px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:40px;border-radius:50%;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">PR</span><div style="flex:1"><div style="font-size:12.5px;color:var(--color-neutral-700)">Person 1</div><div style="font-size:17px;font-weight:600">Priya</div></div></div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 128px auto;gap:8px;align-items:end;padding:12px;background:var(--color-neutral-100)">
+<div class="field"><label style="font-size:13.5px;font-weight:600;color:var(--color-text)">Tool or spare</label><div style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px;color:var(--color-neutral-600)">Choose<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+<div class="field"><label style="font-size:13.5px;font-weight:600;color:var(--color-text)">How many</label><div style="height:48px;display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--color-neutral-400);background:#fff;padding:0 4px"><span style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:20px">−</span><b style="font-size:16px">1</b><span style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:20px">+</span></div></div>
+<button class="btn btn-primary blueprint" style="height:48px;padding:0 20px;font-size:16px;font-weight:600">Add<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+</div>
+<div>
+<div style="display:grid;grid-template-columns:40px minmax(0,1fr) 90px 44px;gap:8px;padding:6px 0;font:600 11.5px var(--font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--color-neutral-700);border-bottom:1.5px solid var(--color-text)"><span>No.</span><span>Tool or spare</span><span>How many</span><span></span></div>
+<div style="display:grid;grid-template-columns:40px minmax(0,1fr) 90px 44px;gap:8px;align-items:center;min-height:48px;border-bottom:1px solid var(--color-divider);font-size:15px"><span>1</span><span>Hydraulic hose</span><b>2</b><span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--color-neutral-700)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></span></div>
+<div style="display:grid;grid-template-columns:40px minmax(0,1fr) 90px 44px;gap:8px;align-items:center;min-height:48px;border-bottom:1px solid var(--color-divider);font-size:15px"><span>2</span><span>O-ring kit</span><b>1</b><span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--color-neutral-700)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></span></div>
+</div>
+<div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:end">
+<div class="field"><label style="font-size:13.5px;font-weight:600;color:var(--color-text)">Tool bag</label><div style="display:flex;gap:6px"><span style="height:46px;padding:0 22px;display:flex;align-items:center;border-radius:23px;border:2px solid var(--color-accent);background:var(--color-accent-100);font-size:15px;font-weight:600">Yes</span><span style="height:46px;padding:0 22px;display:flex;align-items:center;border-radius:23px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px;font-weight:600">No</span></div></div>
+<div class="field"><label style="font-size:13.5px;font-weight:600;color:var(--color-text)">Vehicle number</label><div style="height:48px;display:flex;align-items:center;padding:0 12px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px">XX 00 XX 0000</div></div>
+</div>
+</div>
+<button class="btn btn-secondary" style="height:52px;width:100%;font-size:16px;font-weight:600;border:1.5px dashed var(--color-neutral-500)">+ Add another person</button>
+</div>
+<div style="padding:18px 30px 26px;border-top:1px solid var(--color-divider);display:flex;justify-content:space-between;align-items:center"><button class="btn btn-secondary" style="height:58px;padding:0 26px;font-size:17px">Back</button><button class="btn btn-primary blueprint" style="height:58px;padding:0 40px;font-size:18px;font-weight:600">Submit complaint<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+
+<div style="flex:none;width:80px;align-self:center;display:flex;justify-content:center"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" stroke="var(--color-accent-900)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h42M34 3l10 9-10 9"></path></svg></div>
+
+<div data-screen-label="05 Complaint details" style="flex:none;width:1200px;min-height:900px;background:color-mix(in srgb,var(--color-accent-900) 45%,var(--color-bg));border:1.5px solid var(--color-text);display:flex;justify-content:flex-end">
+<div style="width:620px;background:var(--color-bg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column">
+<div style="padding:26px 30px 0;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:13px;color:var(--color-neutral-700)">Terrax TX-200 · Machine no. 1001</div><div style="display:flex;align-items:center;gap:12px;margin-top:4px"><h2 style="margin:0;font-size:38px;line-height:1">Complaint 2041</h2><span style="display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:15px;background:var(--color-accent);color:var(--color-bg);font-size:14px;font-weight:600">Open</span></div></div><div style="display:flex;gap:8px"><button class="btn btn-secondary" style="width:46px;height:46px;padding:0" title="Print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"></path></svg></button><button class="btn btn-secondary" style="width:46px;height:46px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div></div>
+<div style="margin:18px 30px 0;padding:12px 14px;background:var(--color-accent-100);font-size:15px;color:var(--color-accent-900)">Priya is working on this. When the work is done, press <b>Finish job</b>.</div>
+<div style="padding:20px 30px;display:flex;flex-direction:column;gap:16px;flex:1">
+<div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--color-divider)"><div style="padding:12px 14px"><div style="font-size:12.5px;color:var(--color-neutral-700)">Date and time</div><div style="font-size:16px;font-weight:600;margin-top:2px">29/09/2026 · 11:20 AM</div></div><div style="padding:12px 14px;border-left:1px solid var(--color-divider)"><div style="font-size:12.5px;color:var(--color-neutral-700)">What's wrong?</div><div style="font-size:16px;font-weight:600;margin-top:2px">Oil leaking near the arm</div></div></div>
+<div style="border:1.5px solid var(--color-text);padding:16px 18px">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><span style="width:40px;height:40px;border-radius:50%;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">PR</span><div><div style="font-size:17px;font-weight:600">Priya</div><div style="font-size:13.5px;color:var(--color-neutral-700)">Vehicle XX 00 XX 0000 · Tool bag: Yes</div></div></div>
+<div style="display:flex;justify-content:space-between;min-height:44px;align-items:center;border-top:1px solid var(--color-divider);font-size:15px"><span>1 · Hydraulic hose</span><b>2</b></div>
+<div style="display:flex;justify-content:space-between;min-height:44px;align-items:center;border-top:1px solid var(--color-divider);font-size:15px"><span>2 · O-ring kit</span><b>1</b></div>
+</div>
+</div>
+<div style="padding:18px 30px 26px;border-top:1px solid var(--color-divider);display:flex;justify-content:space-between;align-items:center"><button class="btn btn-secondary" style="height:58px;padding:0 26px;font-size:17px">Back</button><button class="btn btn-primary blueprint" style="height:58px;padding:0 40px;font-size:18px;font-weight:600">Finish job<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+
+<div style="flex:none;width:80px;align-self:center;display:flex;justify-content:center"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" stroke="var(--color-accent-900)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h42M34 3l10 9-10 9"></path></svg></div>
+
+<div data-screen-label="06 Finish job" style="flex:none;width:1200px;min-height:900px;background:color-mix(in srgb,var(--color-accent-900) 45%,var(--color-bg));border:1.5px solid var(--color-text);display:flex;justify-content:flex-end">
+<div style="width:620px;background:var(--color-bg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column">
+<div style="padding:26px 30px 0;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:13px;color:var(--color-neutral-700)">Complaint 2041 · Terrax TX-200</div><h2 style="margin:4px 0 0;font-size:38px;line-height:1">Finish job</h2></div><button class="btn btn-secondary" style="width:46px;height:46px;padding:0" title="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+<div style="padding:22px 30px;display:flex;flex-direction:column;gap:18px;flex:1">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<label class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">Finished on</label><div style="height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px">29/09/2026<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg></div></label>
+<label class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">Finished at</label><div style="height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:16px">4:30 PM<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM12 6v6l4 2"></path></svg></div></label>
+</div>
+<div><div style="font-size:15px;font-weight:600;margin-bottom:6px">Were these used?</div>
+<div style="border-top:1.5px solid var(--color-text)">
+<div style="display:flex;align-items:center;gap:12px;min-height:60px;border-bottom:1px solid var(--color-divider)"><span style="flex:1;font-size:16px">Hydraulic hose <span style="color:var(--color-neutral-700)">× 2</span></span><span style="height:44px;padding:0 20px;display:flex;align-items:center;border-radius:22px;border:2px solid var(--color-accent);background:var(--color-accent-100);font-size:15px;font-weight:600">Used</span><span style="height:44px;padding:0 20px;display:flex;align-items:center;border-radius:22px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px;font-weight:600">Not used</span></div>
+<div style="display:flex;align-items:center;gap:12px;min-height:60px;border-bottom:1px solid var(--color-divider)"><span style="flex:1;font-size:16px">O-ring kit <span style="color:var(--color-neutral-700)">× 1</span></span><span style="height:44px;padding:0 20px;display:flex;align-items:center;border-radius:22px;border:1.5px solid var(--color-neutral-400);background:#fff;font-size:15px;font-weight:600">Used</span><span style="height:44px;padding:0 20px;display:flex;align-items:center;border-radius:22px;border:2px solid var(--color-accent);background:var(--color-accent-100);font-size:15px;font-weight:600">Not used</span></div>
+</div></div>
+<label class="field"><label style="font-size:15px;font-weight:600;color:var(--color-text)">What was done?</label><textarea class="input" placeholder="Example: changed the arm hose" style="min-height:110px;font-size:16px;border:1.5px solid var(--color-neutral-400);background:#fff"></textarea></label>
+<div style="display:flex;gap:10px"><button class="btn btn-secondary" style="height:50px;padding:0 16px;font-size:15px;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M12 18v-6M9 15h6"></path></svg>Attach file</button><button class="btn btn-secondary" style="height:50px;padding:0 16px;font-size:15px;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>Send link</button></div>
+</div>
+<div style="padding:18px 30px 26px;border-top:1px solid var(--color-divider);display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;color:var(--color-neutral-700)">Complaint changes to Done</span><button class="btn btn-primary blueprint" style="height:58px;padding:0 40px;font-size:18px;font-weight:600">Submit<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ST = {
+  "Rented": ["var(--color-accent-800)", "var(--color-bg)", "var(--color-bg)"],
+  "Broken on site": ["var(--color-neutral-900)", "var(--color-bg)", "var(--color-bg)"],
+  "Coming back": ["var(--color-accent-100)", "var(--color-accent-900)", "var(--color-accent-500)"],
+  "Needs repair": ["var(--color-neutral-200)", "var(--color-text)", "var(--color-neutral-700)"],
+  "Parked": ["transparent", "var(--color-neutral-800)", "var(--color-neutral-400)"],
+  "Ready to rent": ["var(--color-accent)", "var(--color-bg)", "var(--color-bg)"]
+};
+const DOT = { "Rented": "var(--color-accent-800)", "Coming back": "var(--color-accent-400)", "Needs repair": "var(--color-neutral-600)", "Broken on site": "var(--color-neutral-900)", "Parked": "var(--color-neutral-400)", "Ready to rent": "var(--color-accent)" };
+const COUNT = { "Rented": 180, "Coming back": 8, "Needs repair": 12, "Broken on site": 3, "Parked": 25, "Ready to rent": 12 };
+class Component extends DCLogic {
+  renderVals() {
+    const st = l => ({ label: l, bg: ST[l][0], fg: ST[l][1], dot: ST[l][2] });
+    return {
+      screens: [
+        ["01", "Machines", "Find the machine", "Frame 1"], ["02", "Complaints", "See or start complaints", "Frame 2"],
+        ["03", "New complaint · step 1", "Date, time, person, problem", "new complinet"], ["04", "New complaint · step 2", "Tools, tool bag, vehicle", "Spare register"],
+        ["05", "Complaint details", "Check what was sent", "view details"], ["06", "Finish job", "Used or not, what was done", "after check out"]
+      ].map(([n, title, does, fig], i) => ({ n, title, does, fig, arrow: i < 5 })),
+      tiles: Object.keys(COUNT).map((k, i) => ({ label: k, count: COUNT[k], edge: i ? "1.5px solid var(--color-text)" : "none", bg: "transparent", fg: "var(--color-text)", dot: DOT[k] })),
+      machines: [
+        ["Digging", "Loader digger", "1001", "XXX", 2021, "50011", "Terrax", "Northside Builders", "Rented", "TX-200"],
+        ["Digging", "Crawler digger", "1002", "XXX", 2019, "50012", "Hollin", "Riverbank Works", "Broken on site", "HX-30"],
+        ["Height work", "Platform lift", "1003", "XXX", 2022, "50013", "Liftmo", "Hilltop Homes", "Coming back", "LM-19"],
+        ["Loading", "Reach loader", "1004", "XXX", 2020, "—", "Varden", "—", "Needs repair", "VR-18"],
+        ["Height work", "Arm lift", "1005", "XXX", 2018, "—", "Skyreach", "—", "Parked", "SR-16"],
+        ["Power units", "Power set", "1006", "XXX", 2023, "—", "Voltek", "—", "Ready to rent", "VK-125"]
+      ].map(([cat, sub, id, serial, year, ofm, make, customer, s, model], i) => ({ cat, sub, id, serial, year, ofm, make, customer, model, since: ["for 12 days", "3 hrs ago", "due in 5 hrs", "for 3 days", "for 2 weeks", "since yesterday"][i], st: st(s), hl: i === 0 ? "var(--color-accent-100)" : "transparent" }))
+    };
+  }
+}
+</script>
+</body>
+</html>

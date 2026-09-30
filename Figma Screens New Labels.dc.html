@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/industry-fc66b6c8-327b-4ba3-b79f-824447db20a3/styles.css">
+<script src="_ds/industry-fc66b6c8-327b-4ba3-b79f-824447db20a3/_ds_bundle.js"></script>
+<style>body{margin:0;background:#dcdcdf;font-family:var(--font-body);color:var(--color-text)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-900)}</style>
+</helmet>
+<div style="padding:40px 44px 60px;display:flex;flex-direction:column;gap:56px">
+
+<div style="max-width:1440px"><h1 style="margin:0;font-size:40px;line-height:1">Figma screens · new labels and colors</h1><p style="margin:8px 0 0;font-size:15px;color:var(--color-neutral-700);max-width:900px">The same 6 screens and elements as the Figma file, in the same order. Only the words and colors are changed.</p></div>
+
+<div data-screen-label="01 Machines" style="display:flex;flex-direction:column;gap:10px">
+<div style="font:600 13px ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">01 · Machines  (Figma: Frame 1 "Machine status")</div>
+<div style="width:1440px;background:var(--color-bg);border:1px solid var(--color-divider);display:flex;flex-direction:column">
+<div style="height:70px;display:flex;align-items:center;gap:8px;padding:0 32px;background:var(--color-accent-900);color:var(--color-bg)">
+<div style="width:150px;height:30px;border:1px dashed color-mix(in srgb,var(--color-bg) 50%,transparent);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em">LOGO</div>
+<div style="flex:1"></div>
+<span style="padding:8px 14px;font-size:14px">Masters</span><span style="padding:8px 14px;font-size:14px">Service</span><span style="padding:8px 14px;font-size:14px">Store</span><span style="padding:8px 14px;font-size:14px">Approvals</span><span style="padding:8px 14px;font-size:14px">Reports</span><span style="padding:8px 14px;font-size:14px">MIS Reports</span><span style="padding:8px 14px;font-size:14px">Settings</span>
+<button class="btn" style="height:36px;padding:0 22px;margin-left:12px;background:var(--color-bg);color:var(--color-accent-900);font-size:14px;font-weight:600;border-color:var(--color-bg)">Log in</button>
+</div>
+<div style="padding:44px 72px 56px;display:flex;flex-direction:column;gap:44px">
+<h2 style="margin:0;font-size:44px;line-height:1">Machines</h2>
+<div class="blueprint" style="max-width:1254px;padding:32px 40px;display:flex;gap:64px;align-items:center">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="width:220px;height:220px;flex:none;border-radius:50%;background:conic-gradient(var(--color-accent-800) 0 75%,var(--color-accent-400) 0 78.3%,var(--color-neutral-600) 0 83.3%,var(--color-neutral-900) 0 84.6%,var(--color-neutral-300) 0 95%,var(--color-accent) 0 100%)"></div>
+<div style="flex:1">
+<div style="font:600 32px var(--font-heading)">Total machines: 240</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 24px;margin-top:26px;font-size:19px">
+<span style="display:flex;align-items:center;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--color-accent-800)"></span>Rented: 180</span>
+<span style="display:flex;align-items:center;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--color-accent-400)"></span>Coming back: 8</span>
+<span style="display:flex;align-items:center;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--color-neutral-600)"></span>Needs repair: 12</span>
+<span style="display:flex;align-items:center;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--color-neutral-900)"></span>Broken on site: 3</span>
+<span style="display:flex;align-items:center;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--color-neutral-300)"></span>Parked: 25</span>
+<span style="display:flex;align-items:center;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--color-accent)"></span>Ready to rent: 12</span>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:40px;align-items:flex-end">
+<label class="field" style="width:450px"><label style="font-size:19px;color:var(--color-text);margin-bottom:10px">Find by serial number</label><input class="input" placeholder="e.g. XXX" style="height:60px;font-size:17px;background:#fff"></input></label>
+<label class="field" style="width:230px"><label style="font-size:19px;color:var(--color-text);margin-bottom:10px">Status</label><select class="input" style="height:60px;font-size:17px;background:#fff"><option>All</option><option>Rented</option><option>Coming back</option><option>Needs repair</option><option>Broken on site</option><option>Parked</option><option>Ready to rent</option></select></label>
+<div style="display:flex;gap:20px"><button class="btn btn-primary blueprint" style="height:52px;padding:0 30px;font-size:18px">Search<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button><button class="btn btn-secondary" style="height:52px;padding:0 30px;font-size:18px">Clear</button></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr 1.2fr 1fr 1.4fr .6fr 1fr .8fr 1.2fr 1fr .9fr 150px;gap:12px;padding:0 32px 14px;font:600 19px var(--font-heading);letter-spacing:.02em">
+<span>Category</span><span>Sub category</span><span>Machine no.</span><span>Serial no.</span><span>Year</span><span>OFM no.</span><span>Make</span><span>Customer</span><span>Status</span><span>Model</span><span></span>
+</div>
+<div style="border-top:1px solid var(--color-text)">
+<sc-for list="{{ machines }}" as="m" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:1.1fr 1.2fr 1fr 1.4fr .6fr 1fr .8fr 1.2fr 1fr .9fr 150px;gap:12px;align-items:center;height:86px;padding:0 32px;border-bottom:1px solid var(--color-text);font-size:15px">
+<span>{{ m.cat }}</span><span>{{ m.sub }}</span><span>{{ m.id }}</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px">{{ m.serial }}</span><span>{{ m.year }}</span><span>{{ m.ofm }}</span><span>{{ m.make }}</span><span>{{ m.customer }}</span><span style="font-weight:600">{{ m.status }}</span><span>{{ m.model }}</span>
+<button class="btn btn-primary blueprint" style="height:46px;font-size:17px">View<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+</div>
+</sc-for>
+</div>
+<div style="height:90px;margin-top:90px;background:var(--color-neutral-200);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:12px ui-monospace,Menlo,monospace;color:var(--color-neutral-800)"><span>© 2026 · Company, Inc. All rights reserved. Address</span><span>Item 1 | Item 2 | Item 3</span></div>
+</div>
+</div>
+
+<div data-screen-label="02 Complaints" style="display:flex;flex-direction:column;gap:10px">
+<div style="font:600 13px ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">02 · Complaints for one machine  (Figma: Frame 2)</div>
+<div style="width:1440px;background:var(--color-bg);border:1px solid var(--color-divider);display:flex;flex-direction:column">
+<div style="height:70px;display:flex;align-items:center;gap:8px;padding:0 32px;background:var(--color-accent-900);color:var(--color-bg)">
+<div style="width:150px;height:30px;border:1px dashed color-mix(in srgb,var(--color-bg) 50%,transparent);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em">LOGO</div>
+<div style="flex:1"></div>
+<span style="padding:8px 14px;font-size:14px">Masters</span><span style="padding:8px 14px;font-size:14px">Service</span><span style="padding:8px 14px;font-size:14px">Store</span><span style="padding:8px 14px;font-size:14px">Approvals</span><span style="padding:8px 14px;font-size:14px">Reports</span><span style="padding:8px 14px;font-size:14px">MIS Reports</span><span style="padding:8px 14px;font-size:14px">Settings</span>
+<button class="btn" style="height:36px;padding:0 22px;margin-left:12px;background:var(--color-bg);color:var(--color-accent-900);font-size:14px;font-weight:600;border-color:var(--color-bg)">Log in</button>
+</div>
+<div style="height:82px;display:flex;align-items:center;gap:22px;padding:0 82px;background:var(--color-accent-100);font-size:18px"><span>Home</span><span>›</span><span>Machines</span><span>›</span><span style="font-weight:600">Machine no. 1001</span></div>
+<div style="padding:110px 82px 56px;display:flex;flex-direction:column;gap:46px">
+<h2 style="margin:0;font-size:44px;line-height:1">Complaints</h2>
+<button class="btn btn-primary blueprint" style="width:310px;height:174px;flex-direction:column;gap:20px;font-size:22px;font-weight:600"><span>New complaint</span><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5v14"></path></svg><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+<div style="display:flex;gap:44px;align-items:flex-end;margin-top:60px">
+<label class="field" style="width:450px"><label style="font-size:19px;color:var(--color-text);margin-bottom:10px">Date</label><input class="input" placeholder="DD/MM/YYYY" style="height:60px;font-size:17px;background:#fff"></input></label>
+<label class="field" style="width:370px"><label style="font-size:19px;color:var(--color-text);margin-bottom:10px">Person</label><select class="input" style="height:60px;font-size:17px;background:#fff"><option>Meena</option><option>Priya</option><option>Arun</option></select></label>
+<div style="display:flex;gap:28px"><button class="btn btn-primary blueprint" style="height:52px;padding:0 30px;font-size:18px">Search<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button><button class="btn btn-secondary" style="height:52px;padding:0 30px;font-size:18px">Clear</button></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 460px;gap:12px;padding:0 67px 14px;font:600 20px var(--font-heading)"><span>Complaint no.</span><span>Date</span><span>Person</span><span>Status</span><span></span></div>
+<div style="border-top:1px solid var(--color-text)">
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 460px;gap:12px;align-items:center;height:86px;padding:0 67px;border-bottom:1px solid var(--color-text);font-size:17px"><span>2041</span><span>dd/mm/yyyy</span><span>Priya</span><span><span class="tag tag-accent" style="font-size:14px;padding:5px 12px">Open</span></span><span style="display:flex;gap:30px;justify-content:flex-end"><button class="btn btn-secondary" style="width:200px;height:55px;font-size:18px;font-weight:600">Edit</button><button class="btn btn-primary blueprint" style="width:176px;height:47px;font-size:17px">View<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 460px;gap:12px;align-items:center;height:86px;padding:0 67px;border-bottom:1px solid var(--color-text);font-size:17px"><span>2037</span><span>dd/mm/yyyy</span><span>Arun</span><span><span class="tag tag-neutral" style="font-size:14px;padding:5px 12px">Done</span></span><span style="display:flex;gap:30px;justify-content:flex-end"><button class="btn btn-secondary" style="width:200px;height:55px;font-size:18px;font-weight:600">Edit</button><button class="btn btn-primary blueprint" style="width:176px;height:47px;font-size:17px">View<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></span></div>
+<div style="height:86px;border-bottom:1px solid var(--color-text)"></div>
+<div style="height:86px;border-bottom:1px solid var(--color-text)"></div>
+</div>
+<div style="height:90px;margin-top:90px;background:var(--color-neutral-200);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:12px ui-monospace,Menlo,monospace;color:var(--color-neutral-800)"><span>© 2026 · Company, Inc. All rights reserved. Address</span><span>Item 1 | Item 2 | Item 3</span></div>
+</div>
+</div>
+
+<div data-screen-label="03 New complaint step 1" style="display:flex;flex-direction:column;gap:10px">
+<div style="font:600 13px ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">03 · New complaint, page 1 of 2  (Figma: "new complinet" / "view details" 23:455)</div>
+<div style="width:1440px;height:1480px;background:color-mix(in srgb,var(--color-accent-900) 38%,var(--color-bg));border:1px solid var(--color-divider);display:flex;flex-direction:column">
+<div style="height:70px;background:var(--color-accent-900);opacity:.55"></div>
+<div style="height:82px;background:var(--color-accent-100);opacity:.4"></div>
+<div style="flex:1;display:flex;align-items:flex-start;justify-content:center;padding-top:110px">
+<div class="blueprint" style="width:1340px;padding:60px 104px 50px;background:var(--color-bg);box-shadow:var(--shadow-lg);position:relative;display:flex;flex-direction:column;gap:48px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<button class="btn btn-secondary" style="position:absolute;top:24px;right:24px;width:52px;height:52px;padding:0" title="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display:grid;grid-template-columns:450px 450px;gap:90px">
+<label class="field"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Date</label><input class="input" style="height:68px;font-size:18px;background:#fff"></input></label>
+<label class="field"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Time</label><input class="input" style="height:68px;font-size:18px;background:#fff"></input></label>
+</div>
+<label class="field" style="width:450px"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Person</label><input class="input" style="height:68px;font-size:18px;background:#fff"></input></label>
+<label class="field" style="width:1105px"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">What's wrong?</label><textarea class="input" style="height:272px;font-size:18px;background:#fff"></textarea></label>
+<div style="display:flex;align-items:center;justify-content:space-between;margin-top:120px"><span style="width:180px"></span><span style="display:flex;gap:10px"><span style="width:20px;height:20px;border-radius:50%;background:var(--color-accent)"></span><span style="width:20px;height:20px;border-radius:50%;background:var(--color-neutral-300)"></span></span><button class="btn btn-primary blueprint" style="width:180px;height:55px;font-size:20px;font-weight:600">Next<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="04 Tools and spares" style="display:flex;flex-direction:column;gap:10px">
+<div style="font:600 13px ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">04 · New complaint, page 2 of 2: Tools and spares  (Figma: "new complinet" 23:257 "Spare register")</div>
+<div style="width:1440px;height:1480px;background:color-mix(in srgb,var(--color-accent-900) 38%,var(--color-bg));border:1px solid var(--color-divider);display:flex;flex-direction:column">
+<div style="height:70px;background:var(--color-accent-900);opacity:.55"></div>
+<div style="height:82px;background:var(--color-accent-100);opacity:.4"></div>
+<div style="flex:1;display:flex;align-items:flex-start;justify-content:center;padding-top:110px">
+<div class="blueprint" style="width:1340px;padding:60px 104px 50px;background:var(--color-bg);box-shadow:var(--shadow-lg);position:relative;display:flex;flex-direction:column;gap:30px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<button class="btn btn-secondary" style="position:absolute;top:24px;right:24px;width:52px;height:52px;padding:0" title="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<h2 style="margin:0;font-size:48px;line-height:1">Tools and spares</h2>
+<div style="border:1px solid var(--color-text);padding:30px 40px 34px 60px;position:relative;display:flex;flex-direction:column;gap:44px">
+<svg style="position:absolute;top:12px;left:12px" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-neutral-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+<button class="btn btn-ghost" style="position:absolute;top:18px;right:18px;width:52px;height:52px;padding:0;color:var(--color-neutral-700)" title="Print"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"></path></svg></button>
+<div style="display:flex;align-items:center;gap:30px;padding-left:22px"><span style="font-size:26px;width:230px">Person</span><input class="input" style="width:450px;height:68px;font-size:18px;background:#fff"></input></div>
+<div style="display:flex;align-items:center;gap:20px"><span style="font-size:26px;white-space:nowrap;flex:none">Tool or spare</span><select class="input" style="width:270px;height:68px;font-size:18px;background:#fff"><option></option><option>Hydraulic hose</option><option>O-ring kit</option></select><span style="font-size:26px;margin-left:20px;white-space:nowrap;flex:none">How many</span><input class="input" style="width:130px;height:68px;font-size:18px;background:#fff"></input><button class="btn btn-primary blueprint" style="width:180px;height:55px;font-size:20px;font-weight:600;margin-left:14px">Add<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding-left:60px">
+<div style="display:grid;grid-template-columns:260px 280px 1fr;font-size:26px;width:920px"><span>No.</span><span>Tool or spare</span><span>How many</span></div>
+<div style="display:flex;align-items:center;gap:34px"><div style="width:920px;height:86px;background:var(--color-neutral-200)"></div><button class="btn btn-ghost" style="width:48px;height:48px;padding:0;color:var(--color-accent-700)" title="Remove"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM8 12h8"></path></svg></button></div>
+</div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;padding-left:60px">
+<div style="display:flex;align-items:center;gap:30px"><span style="font-size:26px">Tool bag</span>
+<label class="radio" style="flex-direction:column;gap:6px;font-size:22px"><input type="radio" name="tb4" checked="checked"></input><span class="dot"></span>Yes</label>
+<label class="radio" style="flex-direction:column;gap:6px;font-size:22px"><input type="radio" name="tb4"></input><span class="dot"></span>No</label>
+</div>
+<label class="field" style="width:320px"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Vehicle number</label><input class="input" style="height:68px;font-size:18px;background:#fff"></input></label>
+</div>
+</div>
+<button class="btn btn-secondary" style="width:100%;height:70px;font-size:20px;font-weight:600">Add another person</button>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:60px"><button class="btn btn-secondary" style="width:180px;height:55px;font-size:20px;font-weight:600">Back</button><span style="display:flex;gap:10px"><span style="width:20px;height:20px;border-radius:50%;background:var(--color-neutral-300)"></span><span style="width:20px;height:20px;border-radius:50%;background:var(--color-accent)"></span></span><button class="btn btn-primary blueprint" style="width:180px;height:55px;font-size:20px;font-weight:600">Submit<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="05 Complaint details" style="display:flex;flex-direction:column;gap:10px">
+<div style="font:600 13px ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">05 · Complaint details  (Figma: "view details" 23:606)</div>
+<div style="width:1440px;height:1480px;background:color-mix(in srgb,var(--color-accent-900) 38%,var(--color-bg));border:1px solid var(--color-divider);display:flex;flex-direction:column">
+<div style="height:70px;background:var(--color-accent-900);opacity:.55"></div>
+<div style="height:82px;background:var(--color-accent-100);opacity:.4"></div>
+<div style="flex:1;display:flex;align-items:flex-start;justify-content:center;padding-top:110px">
+<div class="blueprint" style="width:1340px;padding:60px 104px 50px;background:var(--color-bg);box-shadow:var(--shadow-lg);position:relative;display:flex;flex-direction:column;gap:30px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<button class="btn btn-secondary" style="position:absolute;top:24px;right:24px;width:52px;height:52px;padding:0" title="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<h2 style="margin:0;font-size:48px;line-height:1">Tools and spares</h2>
+<div style="border:1px solid var(--color-text);padding:30px 40px 34px 60px;position:relative;display:flex;flex-direction:column;gap:44px">
+<svg style="position:absolute;top:12px;left:12px" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-neutral-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+<button class="btn btn-ghost" style="position:absolute;top:18px;right:18px;width:52px;height:52px;padding:0;color:var(--color-neutral-700)" title="Print"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"></path></svg></button>
+<div style="display:flex;align-items:center;gap:30px;padding-left:22px"><span style="font-size:26px;width:230px">Person</span><input class="input" value="Priya" style="width:450px;height:68px;font-size:18px;background:#fff"></input></div>
+<div style="display:flex;align-items:center;gap:20px"><span style="font-size:26px;white-space:nowrap;flex:none">Tool or spare</span><select class="input" style="width:270px;height:68px;font-size:18px;background:#fff"><option></option><option>Hydraulic hose</option></select><span style="font-size:26px;margin-left:20px;white-space:nowrap;flex:none">How many</span><input class="input" style="width:130px;height:68px;font-size:18px;background:#fff"></input><button class="btn btn-primary blueprint" style="width:180px;height:55px;font-size:20px;font-weight:600;margin-left:14px">Add<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding-left:60px">
+<div style="display:grid;grid-template-columns:260px 280px 1fr;font-size:26px;width:920px"><span>No.</span><span>Tool or spare</span><span>How many</span></div>
+<div style="width:920px;height:86px;background:var(--color-neutral-200);display:grid;grid-template-columns:260px 280px 1fr;align-items:center;font-size:20px"><span style="padding-left:16px">1</span><span>Hydraulic hose</span><span>2</span></div>
+</div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;padding-left:60px">
+<div style="display:flex;align-items:center;gap:30px"><span style="font-size:26px">Tool bag</span>
+<label class="radio" style="flex-direction:column;gap:6px;font-size:22px"><input type="radio" name="tb5" checked="checked"></input><span class="dot"></span>Yes</label>
+<label class="radio" style="flex-direction:column;gap:6px;font-size:22px"><input type="radio" name="tb5"></input><span class="dot"></span>No</label>
+</div>
+<label class="field" style="width:320px"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Vehicle number</label><input class="input" value="XX 00 XX 0000" style="height:68px;font-size:18px;background:#fff"></input></label>
+</div>
+</div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:140px"><button class="btn btn-secondary" style="width:180px;height:55px;font-size:20px;font-weight:600">Back</button><button class="btn btn-primary blueprint" style="width:180px;height:55px;font-size:20px;font-weight:600">Finish job<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="06 Finish job" style="display:flex;flex-direction:column;gap:10px">
+<div style="font:600 13px ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">06 · Finish job  (Figma: "after check out")</div>
+<div style="width:1440px;height:1720px;background:color-mix(in srgb,var(--color-accent-900) 38%,var(--color-bg));border:1px solid var(--color-divider);display:flex;flex-direction:column">
+<div style="height:70px;background:var(--color-accent-900);opacity:.55"></div>
+<div style="height:82px;background:var(--color-accent-100);opacity:.4"></div>
+<div style="flex:1;display:flex;align-items:flex-start;justify-content:center;padding-top:190px">
+<div class="blueprint" style="width:930px;padding:50px 104px 50px;background:var(--color-bg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:44px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<h2 style="margin:0;font-size:52px;line-height:1">Finish job</h2>
+<div style="display:grid;grid-template-columns:254px 254px;gap:96px">
+<label class="field"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Finished on</label><input class="input" style="height:66px;font-size:18px;background:var(--color-neutral-100)"></input></label>
+<label class="field"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">Finished at</label><input class="input" style="height:70px;font-size:18px;background:var(--color-neutral-100)"></input></label>
+</div>
+<div style="display:flex;flex-direction:column;gap:26px">
+<div style="display:grid;grid-template-columns:220px 250px 120px 1fr;font-size:26px;align-items:end"><span>Tool or spare</span><span>How many</span><span style="text-align:center">Used</span><span style="text-align:center">Not used</span></div>
+<div style="display:grid;grid-template-columns:470px 120px 1fr;align-items:center"><div style="height:70px;background:var(--color-neutral-100);border:1px solid var(--color-text);display:flex;align-items:center;padding-left:18px;font-size:18px;gap:0"><span style="width:210px">Hydraulic hose</span><span style="width:140px;height:48px;background:#fff;display:flex;align-items:center;padding-left:14px">2</span></div><label class="radio" style="justify-self:center"><input type="radio" name="u1" checked="checked"></input><span class="dot"></span></label><label class="radio" style="justify-self:center"><input type="radio" name="u1"></input><span class="dot"></span></label></div>
+<div style="display:grid;grid-template-columns:470px 120px 1fr;align-items:center"><div style="height:70px;background:var(--color-neutral-100);border:1px solid var(--color-text);display:flex;align-items:center;padding-left:18px;font-size:18px"><span style="width:210px">O-ring kit</span><span style="width:140px;height:48px;background:#fff;display:flex;align-items:center;padding-left:14px">1</span></div><label class="radio" style="justify-self:center"><input type="radio" name="u2"></input><span class="dot"></span></label><label class="radio" style="justify-self:center"><input type="radio" name="u2" checked="checked"></input><span class="dot"></span></label></div>
+</div>
+<label class="field"><label style="font-size:26px;color:var(--color-text);margin-bottom:12px">What was done?</label><textarea class="input" style="height:128px;font-size:18px;background:#fff"></textarea></label>
+<div style="display:flex;align-items:center;gap:48px;margin-top:-20px"><button class="btn btn-secondary" style="width:180px;height:55px;font-size:20px;font-weight:600">Send link</button><button class="btn btn-ghost" style="width:52px;height:52px;padding:0;color:var(--color-neutral-600)" title="Attach file"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M12 18v-6M9 15h6"></path></svg></button></div>
+<div style="display:flex;justify-content:center;margin-top:30px"><button class="btn btn-primary blueprint" style="width:180px;height:55px;font-size:20px;font-weight:600">Submit<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div style="width:1440px;border:1px solid var(--color-text);background:var(--color-bg)">
+<div style="padding:14px 20px;background:var(--color-accent-900);color:var(--color-bg);font:600 22px var(--font-heading)">Label changes</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+<sc-for list="{{ words }}" as="w" hint-placeholder-count="30"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 20px;border-top:1px solid var(--color-divider);font-size:15px"><span style="color:var(--color-neutral-700)">{{ w.old }}</span><span style="font-weight:600">{{ w.now }}</span></div></sc-for>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = [["Master", "Masters"], ["service", "Service"], ["store", "Store"], ["approvel", "Approvals"], ["report", "Reports"], ["Mis Report", "MIS Reports"], ["Setting", "Settings"], ["Machine status", "Machines"], ["Total Count", "Total machines"], ["On Hire", "Rented"], ["Inward Pending", "Coming back"], ["Yard (TBS)", "Needs repair"], ["On Hire Break Down", "Broken on site"], ["Yard", "Parked"], ["Reedy To Rent", "Ready to rent"], ["Search Serial Number", "Find by serial number"], ["Reset", "Clear"], ["AssetCode", "Machine no."], ["SerialNumber", "Serial no."], ["Ofm Number", "OFM no."], ["view detail", "View"], ["Asset number", "Machine no."], ["Ticket number", "Complaint no."], ["Assigned person", "Person"], ["Pending / Completed", "Open / Done"], ["Complain remark", "What's wrong?"], ["next", "Next"], ["Spare register", "Tools and spares"], ["Spare", "Tool or spare"], ["quantity", "How many"], ["Nos", "No."], ["vehicle number", "Vehicle number"], ["Add new person", "Add another person"], ["check out", "Finish job"], ["check out date / time", "Finished on / at"], ["used / not used", "Used / Not used"], ["Complain report", "What was done?"]];
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      words: W.map(([old, now]) => ({ old, now })),
+      machines: [
+        ["Digging", "Loader digger", "1001", "XXX", 2021, "50011", "Terrax", "Northside Builders", "Rented", "TX-200"],
+        ["Digging", "Crawler digger", "1002", "XXX", 2019, "50012", "Hollin", "Riverbank Works", "Broken on site", "HX-30"],
+        ["Height work", "Platform lift", "1003", "XXX", 2022, "50013", "Liftmo", "Hilltop Homes", "Coming back", "LM-19"],
+        ["Loading", "Reach loader", "1004", "XXX", 2020, "—", "Varden", "—", "Needs repair", "VR-18"],
+        ["Height work", "Arm lift", "1005", "XXX", 2018, "—", "Skyreach", "—", "Parked", "SR-16"],
+        ["Power units", "Power set", "1006", "XXX", 2023, "—", "Voltek", "—", "Ready to rent", "VK-125"]
+      ].map(([cat, sub, id, serial, year, ofm, make, customer, status, model]) => ({ cat, sub, id, serial, year, ofm, make, customer, status, model }))
+    };
+  }
+}
+</script>
+</body>
+</html>
